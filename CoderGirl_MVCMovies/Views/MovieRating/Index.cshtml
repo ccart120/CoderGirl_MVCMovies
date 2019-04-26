@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Movie Ratings";
+}
+
+<h1>Movie Ratings</h1>
+//need to change to ratings method?
+<a asp-controller="Movie" asp-action="Create">Add New Movie</a>
+<table>
+    <tr>
+        <th>Movie Name</th>
+        <th>Average Rating</th>
+    </tr>
+     @foreach (var movie in ViewBag.Movies)
+     {
+     <tr>
+         <td>@movie.Value</td>
+     </tr>
+         }
+        
+    </table>
