@@ -15,5 +15,12 @@ namespace CoderGirl_MVCMovies.Data
                 //movieRatingRepository = new ??;// TODO: new up your implementation class here
             return movieRatingRepository;
         }
+
+        public Factory()
+        {
+           
+            this.GetMovieRatingRepository = new Movie();
+            
+        }
     }
 }

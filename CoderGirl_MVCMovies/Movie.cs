@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CoderGirl_MVCMovies
 {
-    public class Movie
+    public class Movie : IMovieRatingRepository
     {
         public int Id;
 

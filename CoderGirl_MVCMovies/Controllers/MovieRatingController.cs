@@ -54,7 +54,7 @@ namespace CoderGirl_MVCMovies.Controllers
         // TODO: Create a Details view which displays the formatted string with movie name and rating in an h2 tag. 
         // TODO: The Details view should include a link to the MovieRating/Index page
         [HttpGet]
-        public IActionResult Details(string movieName, string rating)
+        public IActionResult Details(string movieName, string rating, int id)
         {
             return Content($"{movieName} has a rating of {rating}");
         }
