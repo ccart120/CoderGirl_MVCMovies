@@ -11,16 +11,18 @@ namespace CoderGirl_MVCMovies.Data
 
         public static IMovieRatingRepository GetMovieRatingRepository()
         {
-            //if (movieRatingRepository == null)
-                //movieRatingRepository = new ??;// TODO: new up your implementation class here
+            //added MovieRatingRepository from group
+            if (movieRatingRepository == null)
+                movieRatingRepository = new MovieRatingRepository();
+            // TODO: new up your implementation class here
             return movieRatingRepository;
         }
 
-        public Factory()
-        {
+        //public Factory()
+        //{
            
-            this.GetMovieRatingRepository = new Movie();
+            //this.GetMovieRatingRepository = new Movie();
             
-        }
+        //}
     }
 }
