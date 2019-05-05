@@ -8,7 +8,13 @@
     <select name="movieName">
         @foreach (var movie in ViewBag.Movies)
         {
-            <option>@movie.Value</option>
+            @if (ViewBag.Movies.Count >= 1)
+            {
+                <select>
+                    <option>@movie.Value</option>
+                </select>
+            }
+            
         }
     </select>
     <select name="rating">
