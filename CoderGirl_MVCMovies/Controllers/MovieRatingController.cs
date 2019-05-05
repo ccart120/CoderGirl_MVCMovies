@@ -67,8 +67,8 @@ namespace CoderGirl_MVCMovies.Controllers
             }
             ViewBag.Movies = movieAverages;
 
-            return View("Index");
-            //return View();
+            return View();
+            //return View("Index");
         }
 
         // TODO: Create a view MovieRating/Create and put the htmlForm there. Remember that html in a view should not be a string.
@@ -80,7 +80,8 @@ namespace CoderGirl_MVCMovies.Controllers
             //these 2 lines from group - maybe this is the issue about the URL
             //--in wrong controller or class?
             ViewBag.Movies = movies;
-            return View("Create");
+            return View();
+            //return View("Create");
             // ViewBag.Movies = MovieController.movies;
             //return View();
         }
@@ -106,7 +107,8 @@ namespace CoderGirl_MVCMovies.Controllers
             //these 3 lines from group
             ViewBag.movieName = movieName;
             ViewBag.movieRating = rating;
-            return View("Details");
+            return View();
+            //return View("Details");
             //return Content($"{movieName} has a rating of {rating}");
         }
     }
