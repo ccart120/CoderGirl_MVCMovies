@@ -8,12 +8,12 @@ namespace CoderGirl_MVCMovies.Controllers
 {
     public class MovieController : Controller
     {
-        public static Dictionary<int, string> movies = new Dictionary<int, string>();
+        public static Dictionary<int, string> movieNames = new Dictionary<int, string>();
         private static int nextIdToUse = 1;
 
         public IActionResult Index()
         {
-            ViewBag.Movies = movies;
+            ViewBag.MovieNames = movieNames;
             return View();
         }
         [HttpGet]
@@ -25,7 +25,7 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpPost]
         public IActionResult Create(string movie)
         {
-            movies.Add(nextIdToUse, movie);
+            movieNames.Add(nextIdToUse, movie);
             nextIdToUse++;
             return RedirectToAction(actionName: nameof(Index));
         }

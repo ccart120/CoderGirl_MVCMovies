@@ -4,20 +4,19 @@
 }
 
 <h1>Rate a Movie</h1>
-@foreach (var movie in ViewBag.Movies)
-{
-    <option>@movie.Value</option>
 
-}
 <form method='post'>
-    <input name="movieName" />
-    <select name="rating">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+
+    <select name="movieName" >
+    @foreach (var movieName in ViewBag.MovieNames)
+    {
+        
+        <option>@movieName.Value</option>
+
+    }
     </select>
+
+
     <button type='submit'>Rate it</button>
 </form>
 

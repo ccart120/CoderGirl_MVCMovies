@@ -10,8 +10,8 @@ namespace CoderGirl_MVCMovies.Controllers
     public class MovieRatingController : Controller
     {
         private IMovieRatingRepository repository = RepositoryFactory.GetMovieRatingRepository();
-        //next 2 lines added from group
-        public static List<Movie> movies = new List<Movie>();
+        
+        public static List<string> movieNames = MovieController.movieNames.Values.ToList();
         //public static Dictionary<Movie, double> movieAverages = new Dictionary<Movie, double>();
 
         private string htmlForm = @"
@@ -27,7 +27,7 @@ namespace CoderGirl_MVCMovies.Controllers
                 <button type='submit'>Rate it</button>
             </form>";
         //PopulateMovieList and foreach loop are from group
-        private void PopulateMovieList()
+        /*private void PopulateMovieList()
         {
             //repository.SaveRating("The Matrix", 5);
             //repository.SaveRating("The Matrix", 3);
@@ -39,12 +39,12 @@ namespace CoderGirl_MVCMovies.Controllers
             foreach (int id in repository.GetIds())
             {
                 Movie mov = new Movie();
-                mov.Id = movies.Count + 1;
+                mov.Id = movieNames.Count + 1;
                 mov.Name = repository.GetMovieNameById(id);
                 mov.Rating = repository.GetRatingById(id);
-                movies.Add(mov);
+                movieNames.Add(mov);
             }
-        }
+        }*/
 
         /// TODO: Create a view Index. This view should list a table of all saved movie names with associated average rating
         /// TODO: Be sure to include headers for Movie and Rating
@@ -52,20 +52,18 @@ namespace CoderGirl_MVCMovies.Controllers
         public IActionResult Index()
         {
 
-            //entire contents of Index method from group
-            PopulateMovieList();
-            Dictionary<Movie, double> movieAverages = new Dictionary<Movie, double>();
-            List<string> uniqueMovieNames = new List<string>();
-            foreach (Movie movie in movies)
+            
+            //PopulateMovieList();
+            Dictionary<string, double> movieAverages = new Dictionary<string, double>();
+            List<string> uniqueMovieNames = movieNames.Distinct().ToList();
+            foreach (string movieName in uniqueMovieNames)
             {
-                if (uniqueMovieNames.Contains(movie.Name))
-                {
-                    continue;
-                }
-                uniqueMovieNames.Add(movie.Name);
-                movieAverages.Add(movie, repository.GetAverageRatingByMovieName(movie.Name));
+
+                //if (movieNames.Contains averagerating - call the getaveragerating method and delete it from below?
+                //then add it to movieAverages
+                movieAverages.Add(movieName, repository.GetAverageRatingByMovieName(movieName));
             }
-            ViewBag.Movies = movieAverages;
+            ViewBag.MovieRatings = movieAverages;
 
             return View();
             //return View("Index");
@@ -77,9 +75,8 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            //these 2 lines from group - maybe this is the issue about the URL
-            //--in wrong controller or class?
-            ViewBag.Movies = movies;
+            
+            ViewBag.MovieNames = movieNames;
             return View();
             //return View("Create");
             // ViewBag.Movies = MovieController.movies;
@@ -91,7 +88,7 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpPost]
         public IActionResult Create(string movieName, string rating)
         {
-            //these 2 lines from group
+            
             int id = repository.SaveRating(movieName, int.Parse(rating));
 
             return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
@@ -104,7 +101,7 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Details(string movieName, string rating)
         {
-            //these 3 lines from group
+            
             ViewBag.movieName = movieName;
             ViewBag.movieRating = rating;
             return View();
