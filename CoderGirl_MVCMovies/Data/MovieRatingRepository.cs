@@ -12,7 +12,9 @@ namespace CoderGirl_MVCMovies.Data
         //added this class from group - to implement interface and methods
         public double GetAverageRatingByMovieName(string movieName)
         {
-            return MovieRatings.Where(m => m.Name == movieName).Average(m => m.Rating);
+
+            //return MovieRatings.Where(m => m.Name == movieName).Average(m => m.Rating);
+            return 0;
         }
 
         public List<int> GetIds()
