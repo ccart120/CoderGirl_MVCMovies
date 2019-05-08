@@ -12,11 +12,11 @@ namespace CoderGirl_MVCMovies.Controllers
         private IMovieRatingRepository repository = RepositoryFactory.GetMovieRatingRepository();
         
         public static List<string> movieNames = MovieController.movieNames.Values.ToList();
-        //public static Dictionary<Movie, double> movieAverages = new Dictionary<Movie, double>();
+        public static Dictionary<string, int> movieRatings = new Dictionary<string, int>();
 
         private string htmlForm = @"
             <form method='post'>
-                <input name='movieName' />
+                <button name='movieName' />
                 <select name='rating'>
                     <option>1</option>
                     <option>2</option>
@@ -56,18 +56,23 @@ namespace CoderGirl_MVCMovies.Controllers
             //PopulateMovieList();
 
             //need to call movieRatingRepository or pass in this to get movie ratings?
-            movieNames = MovieController.movieNames.Values.ToList();
-            Dictionary<string, double> movieAverages = new Dictionary<string, double>();
-            List<string> uniqueMovieNames = movieNames.Distinct().ToList();
-            foreach (string uniquemovieName in uniqueMovieNames)
+            //movieNames = MovieController.movieNames.Values.ToList();
+            //movieRatings = repository
+
+            //Dictionary<string, double> movieAverages = new Dictionary<string, double>();
+            //List<string> uniqueMovieNames = movieNames.Distinct().ToList();
+            foreach (int id in repository.GetIds())
             {
+                movieRatings.Add(repository.GetMovieNameById(id), repository.GetRatingById(id));
+                    
+                
                 //if movieAverages.Value = null,
                 //if (movieNames.Contains averagerating - call the getaveragerating method and delete it from below?
                 //then add it to movieAverages
                 //double averageRating = repository.GetAverageRatingByMovieName(movieName)
-                movieAverages.Add(uniquemovieName, repository.GetAverageRatingByMovieName(uniquemovieName));
+                //movieAverages.Add(uniquemovieName, repository.GetAverageRatingByMovieName(uniquemovieName));
             }
-            ViewBag.MovieRatings = movieAverages;
+            ViewBag.MovieRatings = movieRatings;
 
             return View();
             //return View("Index");
@@ -80,7 +85,7 @@ namespace CoderGirl_MVCMovies.Controllers
         public IActionResult Create()
         {
 
-            //does movieNames need to come from moiveRepository (the list of movies there)?
+            //does movieNames need to come from moiveRepository (the list of movies there)- the dictionary key??
             ViewBag.MovieNames = movieNames;
             return View();
             //return View("Create");
