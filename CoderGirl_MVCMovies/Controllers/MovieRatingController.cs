@@ -79,7 +79,8 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            
+
+            //does movieNames need to come from moiveRepository (the list of movies there)?
             ViewBag.MovieNames = movieNames;
             return View();
             //return View("Create");
