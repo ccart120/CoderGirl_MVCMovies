@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoderGirl_MVCMovies.Data;
 using Microsoft.AspNetCore.Mvc;
+using CoderGirl_MVCMovies.Models;
 
 namespace CoderGirl_MVCMovies.Controllers
 {
     public class MovieRatingController : Controller
     {
-        private IMovieRatingRepository repository = RepositoryFactory.GetMovieRatingRepository();
+        private IMovieRatingRepository movieRatingRepository = RepositoryFactory.GetMovieRatingRepository();
 
         private string htmlForm = @"
             <form method='post'>
@@ -37,9 +38,26 @@ namespace CoderGirl_MVCMovies.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string movieName, string rating)
+        public IActionResult Create(MovieRating movieRating)
         {
-            return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
+            movieRatingRepository.Save(movieRating);
+            //use the ViewBag to pass in the List<string> of movie names.??
+            //used ViewBag in Create View
+            return RedirectToAction(actionName: nameof(Index));
+            
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            return View(movieRatingRepository.GetById(id));
+        }
+
+        [HttpPost]
+        public IActionResult Edit (int id,  MovieRating movieName)
+        {
+            movieRatingRepository.Update(movieName);
+            return RedirectToAction(actionName: nameof(Index));
         }
 
         [HttpGet]

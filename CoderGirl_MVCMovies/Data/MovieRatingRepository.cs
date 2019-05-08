@@ -1,30 +1,58 @@
-﻿using System;
+﻿using CoderGirl_MVCMovies.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CoderGirl_MVCMovies.Data
 {
-    static List<MovieRating> GetMovieRatings();
-    static int nextId = 1;
-
     public class MovieRatingRepository : IMovieRatingRepository
     {
-        int Save(MovieRating movieRating);
+        static List<MovieRating> movieRatings = new List<MovieRating>();
 
+        static int nextId = 1;
 
-
-        public MovieRating GetById(int id);
+        public void Delete(int id)
         {
-            return GetMovieRatings.SingleOrDefault(m => m.Id == id);
+            movieRatings.RemoveAll(m => m.Id == id);
         }
+
+        public MovieRating GetById(int id)
+        {
+            return movieRatings.Single(m => m.Id == id);
+        }
+
+        public List<MovieRating> GetMovieRatings()
+        {
+            return movieRatings;
+        }
+
+        public int Save(MovieRating movieRating)
+        {
+            movieRating.Id = nextId;
+            movieRatings.Add(movieRating);
+            nextId++;
+            return movieRating.Id;
+
+        }
+
+        public void Update(MovieRating movieName)
+        {
+            this.Delete(movieName.Id);
+            movieRatings.Add(movieName);
+        }
+    }
+
+}
+
+
+      
+    
 
         
 
 
 
-        void Update(MovieRating movie);
+        
+  
 
-        void Delete(int id);
-    }
-}

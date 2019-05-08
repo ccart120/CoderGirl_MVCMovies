@@ -1,25 +1,28 @@
-﻿
+﻿@model CoderGirl_MVCMovies.Models.MovieRating
 @{
     ViewData["Title"] = "Rate Movie";
 }
 
 <h1>Rate a Movie</h1>
-@foreach (var movie in ViewBag.Movies)
-{
-    @if (ViewBag.Movies.Count >= 1)
-    {
-<select>
+
     <form method='post'>
         <select name="movieName">
-            <option>@movie.Value</option>
 
-    </form>
-</select>
-    
-     }
+            @foreach (MovieRating movieName in ViewBag.MovieName)
+            {
+                @if (movieName != null)
+                {
+                    <p>No Movies Yet!</p>
+                }
+                else
+                {
+                    <option>@movieName</option>
+                }
 
-                
-        
+            }
+
+        </select>
+     
         <select name="rating">
             <option>1</option>
             <option>2</option>
