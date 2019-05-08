@@ -26,25 +26,7 @@ namespace CoderGirl_MVCMovies.Controllers
                 </select>
                 <button type='submit'>Rate it</button>
             </form>";
-        //PopulateMovieList and foreach loop are from group
-        /*private void PopulateMovieList()
-        {
-            //repository.SaveRating("The Matrix", 5);
-            //repository.SaveRating("The Matrix", 3);
-            //repository.SaveRating("The Matrix Reloaded", 2);
-            //repository.SaveRating("The Matrix Reloaded", 3);
-            //repository.SaveRating("The Matrix The really bad one", 2);
-            //repository.SaveRating("The Matrix The really bad one", 1);
-
-            foreach (int id in repository.GetIds())
-            {
-                Movie mov = new Movie();
-                mov.Id = movieNames.Count + 1;
-                mov.Name = repository.GetMovieNameById(id);
-                mov.Rating = repository.GetRatingById(id);
-                movieNames.Add(mov);
-            }
-        }*/
+       
 
         /// TODO: DONE Create a view Index. This view should list a table of all saved movie names with associated average rating
         /// TODO: DONE Be sure to include headers for Movie and Rating
@@ -52,25 +34,10 @@ namespace CoderGirl_MVCMovies.Controllers
         public IActionResult Index()
         {
 
-
-            //PopulateMovieList();
-
-            //need to call movieRatingRepository or pass in this to get movie ratings?
-            //movieNames = MovieController.movieNames.Values.ToList();
-            //movieRatings = repository
-
-            //Dictionary<string, double> movieAverages = new Dictionary<string, double>();
-            //List<string> uniqueMovieNames = movieNames.Distinct().ToList();
             foreach (int id in repository.GetIds())
             {
                 movieRatings.Add(repository.GetMovieNameById(id), repository.GetRatingById(id));
-                    
-                
-                //if movieAverages.Value = null,
-                //if (movieNames.Contains averagerating - call the getaveragerating method and delete it from below?
-                //then add it to movieAverages
-                //double averageRating = repository.GetAverageRatingByMovieName(movieName)
-                //movieAverages.Add(uniquemovieName, repository.GetAverageRatingByMovieName(uniquemovieName));
+             
             }
             ViewBag.MovieRatings = movieRatings;
 
@@ -85,12 +52,9 @@ namespace CoderGirl_MVCMovies.Controllers
         public IActionResult Create()
         {
 
-            //does movieNames need to come from moiveRepository (the list of movies there)- the dictionary key??
             ViewBag.MovieNames = movieNames;
             return View();
-            //return View("Create");
-            // ViewBag.Movies = MovieController.movies;
-            //return View();
+            
         }
 
         // TODO: DONE Save the movie/rating in the MovieRatingRepository before redirecting to the Details page
@@ -102,7 +66,7 @@ namespace CoderGirl_MVCMovies.Controllers
             int id = repository.SaveRating(movieName, int.Parse(rating));
 
             return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
-            //return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
+           
         }
 
         // TODO: ID was not supposed to be passed in the Details method
@@ -116,8 +80,7 @@ namespace CoderGirl_MVCMovies.Controllers
             ViewBag.movieName = movieName;
             ViewBag.movieRating = rating;
             return View();
-            //return View("Details");
-            //return Content($"{movieName} has a rating of {rating}");
+           
         }
     }
 }
