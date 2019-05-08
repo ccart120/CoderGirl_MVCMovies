@@ -9,12 +9,12 @@ namespace CoderGirl_MVCMovies.Data
     public class MovieRatingRepository : IMovieRatingRepository
     {
         private static List<MovieRating> MovieRatings = new List<MovieRating>();
-        //added this class from group - to implement interface and methods
-        public double GetAverageRatingByMovieName(string movieName)
+        
+        public double GetAverageRatingByMovieName(string uniquemovieName)
         {
 
-            //return MovieRatings.Where(m => m.Name == movieName).Average(m => m.Rating);
-            return 0;
+            return MovieRatings.Where(m => m.Name == uniquemovieName).Average(m => m.Rating);
+            //return 0;
         }
 
         public List<int> GetIds()

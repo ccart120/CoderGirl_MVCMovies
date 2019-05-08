@@ -54,15 +54,18 @@ namespace CoderGirl_MVCMovies.Controllers
 
 
             //PopulateMovieList();
+
+            //need to call movieRatingRepository or pass in this to get movie ratings?
             movieNames = MovieController.movieNames.Values.ToList();
             Dictionary<string, double> movieAverages = new Dictionary<string, double>();
             List<string> uniqueMovieNames = movieNames.Distinct().ToList();
-            foreach (string movieName in uniqueMovieNames)
+            foreach (string uniquemovieName in uniqueMovieNames)
             {
-
+                //if movieAverages.Value = null,
                 //if (movieNames.Contains averagerating - call the getaveragerating method and delete it from below?
                 //then add it to movieAverages
-                movieAverages.Add(movieName, repository.GetAverageRatingByMovieName(movieName));
+                //double averageRating = repository.GetAverageRatingByMovieName(movieName)
+                movieAverages.Add(uniquemovieName, repository.GetAverageRatingByMovieName(uniquemovieName));
             }
             ViewBag.MovieRatings = movieAverages;
 

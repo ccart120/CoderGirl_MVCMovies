@@ -7,7 +7,6 @@ namespace CoderGirl_MVCMovies.Data
 {
     public class MovieRating
     {
-        //class added from group
         public int Id { get; set; }
         public string Name { get; set; }
         public int Rating { get; set; }
