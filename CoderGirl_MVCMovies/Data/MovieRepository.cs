@@ -19,15 +19,15 @@ namespace CoderGirl_MVCMovies.Data
 
         public Movie GetById(int id)
         {
-            Movie movie = movies.SingleOrDefault(m => m.Id == id);
-            movie = SetMovieRatings(movie);
-            return movie;
+            return movies.SingleOrDefault(m => m.Id == id);
         }
 
         public List<Movie> GetMovies()
         {
-            return movies.Select(movie => SetMovieRatings(movie)).ToList();
+            return movies;
         }
+
+       
 
         public int Save(Movie movie)
         {
@@ -40,16 +40,6 @@ namespace CoderGirl_MVCMovies.Data
         {
             this.Delete(movie.Id);
             movies.Add(movie);
-        }
-
-        private Movie SetMovieRatings(Movie movie)
-        {
-            List<int> ratings = ratingRepository.GetMovieRatings()
-                                                .Where(rating => rating.MovieId == movie.Id)
-                                                .Select(rating => rating.Rating)
-                                                .ToList();
-            movie.Ratings = ratings;
-            return movie;
         }
     }
 }
