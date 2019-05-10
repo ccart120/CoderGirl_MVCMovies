@@ -21,8 +21,6 @@ namespace CoderGirl_MVCMovies.Data
         {
             //TODO: Insert MovieRatings
             Movie movie = movies.SingleOrDefault(m => m.Id == id);
-            List<int> ratings = ratingRepository.GetMovieRatings().Where(rating => rating.MovieId == id)
-                .Select(rating => rating.Rating).ToList();
             movie = SetMovieRatings(movie);
             return movie;
         }
