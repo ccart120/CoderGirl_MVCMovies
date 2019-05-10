@@ -54,5 +54,10 @@ namespace CoderGirl_MVCMovies.Controllers
             ratingRepository.Delete(id);
             return RedirectToAction(actionName: nameof(Index));
         }
+
+        public IActionResult GetAverageRating(movieRatings)
+        {
+            
+        }
     }
 }
