@@ -7,7 +7,7 @@ namespace CoderGirl_MVCMovies.Models
 {
     public class Movie
     {
-        public int Id { set; get; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string DirectorName { get; set; }
         public int Year { get; set; }

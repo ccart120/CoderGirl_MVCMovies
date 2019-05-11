@@ -1,5 +1,5 @@
 ﻿@model List<CoderGirl_MVCMovies.Models.Movie>
-@model List<CoderGirl_MVCMovies.Models.MovieRating>
+
 
 @{
     ViewData["Title"] = "Movies";
@@ -9,7 +9,7 @@
 <a asp-controller="Movie" asp-action="Create" asp-route-id="add-new-movie">Add New Movie</a>
 <table>
     <tr>
-        <th>Movie Name</th>
+        <th>Name</th>
         <th>Director</th>
         <th>Year</th>
         <th>Average Rating</th>
@@ -21,11 +21,11 @@
         <td>@movie.Name</td>
         <td>@movie.DirectorName</td>
         <td>@movie.Year</td>
-        <td>@movie.GetAverageRating</td>
-        <td>@movie.GetNumberOfRatings</td>
+
         <td><a asp-controller="MovieRating" asp-action="Create" asp-route-id="@movie.Id">Rate</a></td>
         <td><a asp-controller="Movie" asp-action="Edit" asp-route-id="@movie.Id">Edit</a></td>
-        <td><a asp-controller="Movie" asp-action="Delete" asp-route-id="movie.Id">Delete</a></td>
+        <td><a asp-controller="Movie" asp-action="Delete" asp-route-id="@movie.Id">Delete</a></td>
+        
     </tr>
     }
 </table>

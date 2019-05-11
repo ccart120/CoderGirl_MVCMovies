@@ -55,9 +55,6 @@ namespace CoderGirl_MVCMovies.Controllers
             return RedirectToAction(actionName: nameof(Index));
         }
 
-        public IActionResult GetAverageRating(movieRatings)
-        {
-            
-        }
+        
     }
 }
