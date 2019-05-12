@@ -10,18 +10,36 @@ namespace CoderGirl_MVCMovies.Controllers
     public class DirectorController : Controller
     {
         //create list of directors?
-        public IActionResult Index()
+        private static List<Director> directors = new List<Director>();
+        public IActionResult Index(List<Director> directors)
         {
+            ViewBag.Directors = directors;
             return View();
         }
-        /*
+        
         [HttpGet]
+        public IActionResult Create(List<Director> directors)
+        {
+
+            ViewBag.Directors = directors;
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Create(Director director)
         {
-            
-            director.FirstName = string firstName;
-            return View();
-        }*/
+            Save(director);
+            return RedirectToAction(actionName: nameof(Index));
+        }
+
+        public int Save(Movie)
+        {
+            movieRating.Id = nextId++;
+            movieRatings.Add(movieRating);
+            return movieRating.Id;
+        }
+
+
     }
 
 

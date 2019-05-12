@@ -13,6 +13,7 @@ namespace CoderGirl_MVCMovies.Controllers
         public static IMovieRespository movieRepository = RepositoryFactory.GetMovieRepository();
         public static IMovieRatingRepository movieRatingRepository = RepositoryFactory.GetMovieRatingRepository();
         public List<Movie> movies = movieRepository.GetMovies();
+        public List<Director> directors = new List<Director>();
         public IActionResult Index()
         {
 
@@ -27,6 +28,7 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Directors = directors;
             return View();
         }
 
@@ -68,6 +70,7 @@ namespace CoderGirl_MVCMovies.Controllers
         //each of these rating, hold in a dictionary?
         //than for each movieName, calculate an average?
 
+        /*
         public IActionResult GetAverageRating()
         {
             //double averageRating = 0;
@@ -94,7 +97,7 @@ namespace CoderGirl_MVCMovies.Controllers
             }
         }
         return movieRatings.Average
-
+        */
 
     }
 
@@ -106,4 +109,3 @@ namespace CoderGirl_MVCMovies.Controllers
     }
     */
     }
-}
