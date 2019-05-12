@@ -1,6 +1,6 @@
 ﻿@model List<CoderGirl_MVCMovies.Models.Director>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Directors";
 }
 
 <h1>Directors</h1>
@@ -13,16 +13,12 @@
         <th>Nationality</th>
        
     </tr>
-    @foreach (var director in Model)
+    @foreach (var director in ViewBag.Directors)
     {
         <tr id="{director id}">
             <td>@director.LastName,@director.FirstName</td>
             <td>@director.BirthDate</td>
             <td>@director.Nationality</td>
-
-            <td><a asp-controller="MovieRating" asp-action="Create" asp-route-id="@movie.Id">Rate</a></td>
-            <td><a asp-controller="Movie" asp-action="Edit" asp-route-id="@movie.Id">Edit</a></td>
-            <td><a asp-controller="Movie" asp-action="Delete" asp-route-id="@movie.Id">Delete</a></td>
 
         </tr>
     }
