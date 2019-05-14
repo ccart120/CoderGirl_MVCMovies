@@ -9,6 +9,13 @@ namespace CoderGirl_MVCMovies.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return LastName + ", " + FirstName;
+            }
+        }
         public DateTime BirthDate { get; set; }
         public string Nationality { get; set; }
 
