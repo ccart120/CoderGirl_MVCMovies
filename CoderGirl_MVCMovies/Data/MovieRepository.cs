@@ -11,6 +11,7 @@ namespace CoderGirl_MVCMovies.Data
         static List<Movie> movies = new List<Movie>();
         static int nextId = 1;
         static IMovieRatingRepository ratingRepository = RepositoryFactory.GetMovieRatingRepository();
+        static IDirectorRepository directorRepository = RepositoryFactory.GetDirectorRepository();
 
         public void Delete(int id)
         {
@@ -27,9 +28,23 @@ namespace CoderGirl_MVCMovies.Data
 
         public List<Movie> GetMovies()
         {
-            //TODO: foreach movie insert MRs
+            //TODO: foreach movie insert MRs, set director, averagerating, rating count
            return movies.Select(movie => SetMovieRatings(movie)).ToList();
             
+        }
+
+        private Movie SetDirector(Movie movie)
+        {
+            Director director = directorRepository.GetById(movie.DirectorId);
+            if (director == null)
+            {
+                movie.DirectorName = "Director Unknown";
+            }
+            else
+            {
+                movie.DirectorName = director.FullName;
+            }
+            return movie;
         }
 
        
@@ -39,6 +54,18 @@ namespace CoderGirl_MVCMovies.Data
             movie.Id = nextId++;
             movies.Add(movie);
             return movie.Id;
+        }
+
+        public Movie SetAverageRating(Movie movie)
+        {
+            movie.AverageRating = ratingRepository.GetAverageRating(movie.Id);
+            return movie;
+        }
+
+        public Movie SetRatingCount(Movie movie)
+        {
+            movie.NumberofRatings = ratingRepository.GetRatingCount(movie.Id);
+            return movie;
         }
 
         public void Update(Movie movie)

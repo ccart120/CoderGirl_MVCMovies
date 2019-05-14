@@ -17,5 +17,9 @@ namespace CoderGirl_MVCMovies.Data
         void Update(Movie movie);
 
         void Delete(int id);
+
+        Movie SetAverageRating(Movie movie);
+
+        Movie SetRatingCount(Movie movie);
     }
 }
