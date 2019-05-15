@@ -14,12 +14,12 @@ namespace CoderGirl_MVCMovies.Controllers
         public static IMovieRatingRepository movieRatingRepository = RepositoryFactory.GetMovieRatingRepository();
         public List<Movie> movies = movieRepository.GetMovies();
         public List<Director> directors = new List<Director>();
-        public IActionResult Index()
+        public IActionResult Index(Movie movie)
         {
 
             //List<Movie> movieRatings = movieRepository.SetMovieRatings();
             //ViewBag.Directors = movies.Select(m => m.DirectorName).ToList();
-            //GetAverageRating(movieRatings);
+            movieRepository.SetDirector(movie);
             return View(movies);
         }
 
@@ -63,49 +63,13 @@ namespace CoderGirl_MVCMovies.Controllers
             movieRepository.Delete(id);
             return RedirectToAction(actionName: nameof(Index));
         }
-
-        //takes the ratings associated with a particular movie and calculates the average
-        //to find the ratings associated with a particular movie, look at each movie rating that has been created
-        //check if its name equals its name and then call the rating
-        //each of these rating, hold in a dictionary?
-        //than for each movieName, calculate an average?
-
-        /*
-        public IActionResult GetAverageRating()
-        {
-            //double averageRating = 0;
-            foreach (Movie movie in movies)
-            {
-
-                List<int> totalRatingsPerMovie = movie.Ratings;
-
-                return totalRatingsPerMovie.Average();
-                //totalRatingsPerMovie parse to int and then average
-                //averageRating = totalRatingsPerMovie.Average
-            }
-            //return averageRating;
-
+        
 
         }
-        /*List<MovieRating> movieRatings = ratingRepository.GetMovieRatings();
-       // MovieRating moveRating = ratingRepository.GetById(id).ToString();
-        foreach (MovieRating movieRating in movieRatings)
-        {
-            if (m => m.Id == id)
-            {
-                mov
-            }
-        }
-        return movieRatings.Average
-        */
+        
 
     }
 
 
-    /*
-    public IActionResult GetNumberOfRatings
-    {
-
-    }
-    */
-    }
+    
+    

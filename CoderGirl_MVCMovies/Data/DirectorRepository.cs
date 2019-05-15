@@ -8,33 +8,36 @@ namespace CoderGirl_MVCMovies.Data
 {
     public class DirectorRepository : IDirectorRepository
     {
-        private static List<Director> director = new List<Director>();
+        private static List<Director> directors = new List<Director>();
         private static int nextId = 1;
         static IDirectorRepository directorRepository = RepositoryFactory.GetDirectorRepository();
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            directors.RemoveAll(d => d.Id == id);
         }
 
         public List<Director> GetDirectors()
         {
-            throw new NotImplementedException();
+            return directors;
         }
 
         public Director GetById(int id)
         {
-            throw new NotImplementedException();
+            return directors.SingleOrDefault(r => r.Id == id);
         }
 
         public int Save(Director director)
         {
-            throw new NotImplementedException();
+           director.Id = nextId++;
+            directors.Add(director);
+            return director.Id;
         }
 
         public void Update(Director director)
         {
-            throw new NotImplementedException();
+            this.Delete(director.Id);
+            directors.Add(director);
         }
     }
 }

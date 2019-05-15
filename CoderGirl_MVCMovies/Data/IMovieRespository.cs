@@ -21,5 +21,7 @@ namespace CoderGirl_MVCMovies.Data
         Movie SetAverageRating(Movie movie);
 
         Movie SetRatingCount(Movie movie);
+
+        Movie SetDirector(Movie movie);
     }
 }
