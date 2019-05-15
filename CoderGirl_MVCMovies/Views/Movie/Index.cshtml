@@ -21,6 +21,8 @@
         <td>@movie.Name</td>
         <td>@movie.DirectorName</td>
         <td>@movie.Year</td>
+        <td>@movie.AverageRating</td>
+        <td>@movie.NumberofRatings</td>
 
         <td><a asp-controller="MovieRating" asp-action="Create" asp-route-id="@movie.Id">Rate</a></td>
         <td><a asp-controller="Movie" asp-action="Edit" asp-route-id="@movie.Id">Edit</a></td>

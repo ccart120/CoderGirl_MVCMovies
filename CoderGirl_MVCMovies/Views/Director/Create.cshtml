@@ -1,4 +1,5 @@
-﻿
+﻿@model CoderGirl_MVCMovies.Models.Director;
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -7,16 +8,16 @@
 
 <h1>Add a Director</h1>
 <form>
-    <input name="firstName" type="text" />
+    <input asp-for="FirstName" type="text" />
     <button type="submit" value="Add First Name" />
 
-    <input name="lastName" type="text" />
+    <input asp-for="LastName" type="text" />
     <button type="submit" value="Add Last Name" />
 
-    <input name="birthDate" type="text" />
+    <input asp-for="BirthDate" type="text" />
     <button type="submit" value="Add Birth Date" />
 
-    <input name="nationality" type="text" />
+    <input asp-for="Nationality" type="text" />
     <button type="submit" value="Add Nationality" />
 
     <a asp-controller="Director" asp-action="Index">Add Director</a>

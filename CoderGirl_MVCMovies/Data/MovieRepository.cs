@@ -29,11 +29,16 @@ namespace CoderGirl_MVCMovies.Data
         public List<Movie> GetMovies()
         {
             //TODO: foreach movie insert MRs, set director, averagerating, rating count
-           return movies.Select(movie => SetMovieRatings(movie)).ToList();
+            movies = movies.Select(movie => SetMovieRatings(movie)).ToList();
+            movies = movies.Select(movie => SetDirector(movie)).ToList();
+            movies = movies.Select(movie => SetAverageRating(movie)).ToList();
+            movies = movies.Select(movie => SetRatingCount(movie)).ToList();
+            return movies;
+
             
         }
 
-        private Movie SetDirector(Movie movie)
+        public Movie SetDirector(Movie movie)
         {
             Director director = directorRepository.GetById(movie.DirectorId);
             if (director == null)
