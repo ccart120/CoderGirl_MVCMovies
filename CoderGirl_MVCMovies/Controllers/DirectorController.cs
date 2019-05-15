@@ -20,7 +20,7 @@ namespace CoderGirl_MVCMovies.Controllers
         }
         
         [HttpGet]
-        public IActionResult Create(List<Director> directors)
+        public IActionResult Create2(List<Director> directors)
         {
 
             ViewBag.Directors = directors;
@@ -28,7 +28,7 @@ namespace CoderGirl_MVCMovies.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Director director)
+        public IActionResult Create2(Director director)
         {
             directorRepository.Save(director);
             return RedirectToAction(actionName: nameof(Index));
