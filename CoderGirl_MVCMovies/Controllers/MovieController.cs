@@ -14,7 +14,7 @@ namespace CoderGirl_MVCMovies.Controllers
         public static IMovieRatingRepository movieRatingRepository = RepositoryFactory.GetMovieRatingRepository();
         public static IDirectorRepository directorRepository = RepositoryFactory.GetDirectorRepository();
         public List<Movie> movies = movieRepository.GetMovies();
-        //public List<Director> directors = directorRepository.GetDirectors();
+        public List<Director> directors = directorRepository.GetDirectors();
         public IActionResult Index(Movie movie)
         {
 
@@ -29,7 +29,7 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Directors = directorRepository.GetDirectors();
+            ViewBag.Directors = directors;
             return View();
         }
 
