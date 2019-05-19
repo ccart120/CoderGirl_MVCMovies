@@ -23,7 +23,10 @@ namespace CoderGirl_MVCMovies.Data
             //TODO: Insert MovieRatings
             Movie movie = movies.SingleOrDefault(m => m.Id == id);
             movie = SetMovieRatings(movie);
-            
+            movie = SetDirector(movie);
+            movie.AverageRating = ratingRepository.GetAverageRating(movie.Id);
+            movie.NumberOfRatings = ratingRepository.GetRatingCount(movie.Id);
+
             return movie;
         }
 
@@ -70,7 +73,7 @@ namespace CoderGirl_MVCMovies.Data
 
         public Movie SetRatingCount(Movie movie)
         {
-            movie.NumberofRatings = ratingRepository.GetRatingCount(movie.Id);
+            movie.NumberOfRatings = ratingRepository.GetRatingCount(movie.Id);
             return movie;
         }
 

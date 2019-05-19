@@ -1,26 +1,48 @@
 ﻿@model CoderGirl_MVCMovies.Models.MovieRating
 
 @{
-    ViewData["Title"] = "Rate Movie";
+    ViewData["Title"] = "Rate a Movie";
 }
 
 <h1>Rate a Movie</h1>
-<form method='post'>
-    <select asp-for="MovieName">
-        @Html.TextBoxFor(m => m.MovieName, new { @readonly = "readonly" })
-        @foreach (var name in ViewBag.MovieNames)
-        {
-            <option>@name</option>
-        }
-    </select>
-    <select asp-for="Rating">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-    </select>
-    <button type='submit'>Rate Movie</button>
-</form>
 
+<h4>MovieRating</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="MovieName" class="control-label">@ViewBag.MovieNames.Name
+                    @Html.TextBoxFor(m => m.MovieName, new { @readonly = "readonly" })</label>
+                <input asp-for="MovieName" class="form-control" value=@ViewBag.MovieNames.Name/>
+                <span asp-validation-for="MovieName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <select asp-for="Rating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieId" class="control-label"></label>
+                <input asp-for="MovieId" class="form-control" value=@ViewBag.MovieNames.Id/>
+                <span asp-validation-for="MovieId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" value="Rate" class="btn btn-primary">Rate</button>/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
