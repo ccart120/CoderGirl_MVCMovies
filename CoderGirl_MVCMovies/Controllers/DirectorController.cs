@@ -10,25 +10,25 @@ namespace CoderGirl_MVCMovies.Controllers
 {
     public class DirectorController : Controller
     {
-        private static List<Director> directors = directorRepository.GetDirectors();
+        //private static List<Director> directors = directorRepository.GetDirectors();
         static IDirectorRepository directorRepository = RepositoryFactory.GetDirectorRepository();
 
-        public IActionResult Index(List<Director> directors)
+        public IActionResult Index()
         {
-            ViewBag.Directors = directors;
-            return View();
+            List<Director> directors = directorRepository.GetDirectors();
+            return View(directors);
         }
         
         [HttpGet]
-        public IActionResult Create2(List<Director> directors)
+        public IActionResult Create()
         {
 
-            ViewBag.Directors = directors;
+            //ViewBag.Directors = directors;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create2(Director director)
+        public IActionResult Create(Director director)
         {
             directorRepository.Save(director);
             return RedirectToAction(actionName: nameof(Index));

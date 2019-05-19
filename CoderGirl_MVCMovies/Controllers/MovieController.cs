@@ -17,10 +17,10 @@ namespace CoderGirl_MVCMovies.Controllers
         public List<Director> directors = directorRepository.GetDirectors();
         public IActionResult Index(Movie movie)
         {
-
             //List<Movie> movieRatings = movieRepository.SetMovieRatings();
             //ViewBag.Directors = movies.Select(m => m.DirectorName).ToList();
-            movieRepository.SetDirector(movie);
+            //movieRepository.SetDirector(movie);
+            //public List<Movie> movies = movieRepository.GetMovies();
             return View(movies);
         }
 

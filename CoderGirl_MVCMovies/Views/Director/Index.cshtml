@@ -4,7 +4,8 @@
 }
 
 <h1>Directors</h1>
-<a asp-controller="Director" asp-action="Create" asp-route-id="add-new-director">Add a Director</a>
+<a id="add-new-director" asp-action="Create">Add a Director</a>
+
 
 <table>
     <tr>
@@ -13,11 +14,11 @@
         <th>Nationality</th>
        
     </tr>
-    @foreach (var director in ViewBag.Directors)
+    @foreach (Director director in Model)
     {
-        <tr id="{director id}">
+        <tr id="director.Id">
             <td>@director.FullName</td>
-            <td>@director.BirthDate</td>
+            <td>@director.BirthDate.ToShortDateString()</td>
             <td>@director.Nationality</td>
 
         </tr>
