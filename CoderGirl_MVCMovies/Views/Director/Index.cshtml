@@ -16,7 +16,7 @@
     </tr>
     @foreach (Director director in Model)
     {
-        <tr id="director.Id">
+        <tr id=@director.Id>
             <td>@director.FullName</td>
             <td>@director.BirthDate.ToShortDateString()</td>
             <td>@director.Nationality</td>
