@@ -9,7 +9,7 @@
 <a asp-controller="Movie" asp-action="Create" asp-route-id="add-new-movie">Add New Movie</a>
 <table>
     <tr>
-        <th>Name</th>
+        <th>Movie Name</th>
         <th>Director</th>
         <th>Year</th>
         <th>Average Rating</th>
@@ -21,7 +21,7 @@
         <td>@movie.Name</td>
         <td>@movie.DirectorName</td>
         <td>@movie.Year</td>
-        <td>@movie.AverageRating</td>
+        <td>{@movie.AverageRating</td>
         <td>@movie.NumberOfRatings</td>
 
         <td><a asp-controller="MovieRating" asp-action="Create" asp-route-movieId=@movie.Id>Rate</a></td>

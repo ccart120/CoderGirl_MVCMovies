@@ -18,11 +18,17 @@ namespace CoderGirl_MVCMovies.Data
 
         public decimal GetAverageRating(int movieId)
         {
+
             var average = movieRatings
+                
                 .Where(p => p.MovieId == movieId)
                 .GroupBy(p => p.MovieId)
                 .Select(p => p.Average(q => q.Rating))
                 .SingleOrDefault();
+            if (average == 0)
+            {
+                Console.Write("none");
+            }
             return Convert.ToDecimal(average);
         }
 
