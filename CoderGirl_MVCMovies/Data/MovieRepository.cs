@@ -89,10 +89,10 @@ namespace CoderGirl_MVCMovies.Data
         }
         private Movie SetMovieRatings(Movie movie)
         {
-            List<int> ratings = ratingRepository.GetMovieRatings()
+            List<int> movieRatings = ratingRepository.GetMovieRatings()
               .Where(rating => rating.MovieId == movie.Id)
               .Select(rating => rating.Rating).ToList();
-            movie.Ratings = ratings;
+            movie.movieRatings = movieRatings;
             return movie;
         }
     }

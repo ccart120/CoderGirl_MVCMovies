@@ -21,7 +21,15 @@
         <td>@movie.Name</td>
         <td>@movie.DirectorName</td>
         <td>@movie.Year</td>
-        <td>{@movie.AverageRating</td>
+        
+        @if (movie.NumberOfRatings == 0)
+
+        { <td>None</td> }
+        else
+        {
+          <td>@movie.AverageRating</td> 
+
+        }
         <td>@movie.NumberOfRatings</td>
 
         <td><a asp-controller="MovieRating" asp-action="Create" asp-route-movieId=@movie.Id>Rate</a></td>
