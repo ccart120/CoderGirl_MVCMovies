@@ -30,12 +30,12 @@ namespace CoderGirl_MVCMovies.Controllers
         {
             if (String.IsNullOrWhiteSpace(director.FirstName))
             {
-                ModelState.AddModelError("FirstName", "Name must be included");
+                ModelState.AddModelError("FirstName", "First Name must be included");
             }
 
             if (String.IsNullOrWhiteSpace(director.LastName))
             {
-                ModelState.AddModelError("LastName", "Name must be included");
+                ModelState.AddModelError("LastName", "Last Name must be included");
             }
 
             if (String.IsNullOrWhiteSpace(director.Nationality))
