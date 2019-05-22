@@ -15,7 +15,7 @@
             
             <div class="form-group">
                 <label asp-for="MovieName" class="control-label">@ViewBag.MovieNames.Name</label>
-                <input asp-for="MovieName" class="form-control" value=@ViewBag.MovieNames.Name hidden = "hidden"/>
+                <input asp-for="MovieName" class="form-control" value=@ViewBag.MovieNames.Name readonly = "readonly"/>
                 <span asp-validation-for="MovieName" class="text-danger"></span>
             </div>
             <div class="form-group">
