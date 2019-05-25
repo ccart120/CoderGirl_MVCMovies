@@ -15,7 +15,7 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<Director> directors = directorRepository.GetModels().Cast<Director>().ToList(); ;
+            List<Director> directors = directorRepository.GetModels().Cast<Director>().ToList(); 
             
             return View(directors);
         }

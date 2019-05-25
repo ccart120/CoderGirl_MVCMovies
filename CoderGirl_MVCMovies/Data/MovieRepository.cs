@@ -22,14 +22,17 @@ namespace CoderGirl_MVCMovies.Data
         public override List<IModel> GetModels()
         {
             return models.Select(movie => SetMovieRatings(movie))
-                .Select(movie => SetDirectorName(movie)).ToList();
+                .Select(movie => SetDirectorName(movie)).Cast<Movie>();
         }
-       
+
+        //why is this not recognizing the Movierating property MovieId?
+        //tried to cast (MovieRating) but did not solve issue
+        //Cast<MovieRating>() did not solve issue
         private Movie SetMovieRatings(Movie movie)
         {
-            List<int> ratings = ratingRepository.GetMovieRatings()
-                                                .Where(rating => rating.MovieId == movie.Id)
-                                                .Select(rating => rating.Rating)
+            List<int> ratings = ratingRepository.GetModels()
+                                                .Where(rating => (MovieRating)rating.MovieId == movie.Id)
+                                                .Select(rating => rating.Rating).Cast<MovieRating>()
                                                 .ToList();
             movie.Ratings = ratings;
             return movie;
@@ -37,7 +40,7 @@ namespace CoderGirl_MVCMovies.Data
 
         private Movie SetDirectorName(Movie movie)
         {
-            Director director = directorRepository.GetById(movie.DirectorId);
+            Director director = (Director)directorRepository.GetById(movie.DirectorId);
             movie.DirectorName = director.FullName;
             return movie;
         }

@@ -15,14 +15,17 @@ namespace CoderGirl_MVCMovies.Controllers
 
        public IActionResult Index()
         {
-            List<MovieRating> movieRatings = ratingRepository.GetMovieRatings();
+            List<MovieRating> movieRatings = ratingRepository.GetModels().Cast<MovieRating>().ToList();
             return View(movieRatings);
         }
 
         [HttpGet]
         public IActionResult Create(int movieId)
         {
-            string movieName = movieRespository.GetById(movieId).Name;
+            //I am calling the name property of the Movie class after calling the GETBYID method from 
+            //movierepository, but need to cast name to  movie object somehow, so I can access that property??
+            //do I need to change movie Id to Id - IRepository class?
+            string movieName = (Movie)movieRespository.GetById(movieId).Name;
             MovieRating movieRating = new MovieRating();
             movieRating.MovieId = movieId;
             movieRating.MovieName = movieName;
@@ -39,7 +42,7 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            MovieRating movieRating = ratingRepository.GetById(id);
+            MovieRating movieRating = (MovieRating)ratingRepository.GetById(id);
             return View(movieRating);
         }
 
