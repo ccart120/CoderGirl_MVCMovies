@@ -22,10 +22,9 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Create(int movieId)
         {
-            //I am calling the name property of the Movie class after calling the GETBYID method from 
-            //movierepository, but need to cast name to  movie object somehow, so I can access that property??
-            //do I need to change movie Id to Id - IRepository class?
-            string movieName = (Movie)movieRespository.GetById(movieId).Name;
+            Movie movie = (Movie)movieRespository.GetById(movieId);
+            string movieName = movie.Name;
+            //string movieName = (Movie)movieRespository.GetById(movieId).Name;
             MovieRating movieRating = new MovieRating();
             movieRating.MovieId = movieId;
             movieRating.MovieName = movieName;
