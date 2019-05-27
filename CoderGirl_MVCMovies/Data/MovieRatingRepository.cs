@@ -19,7 +19,7 @@ namespace CoderGirl_MVCMovies.Data
 
         public MovieRating GetById(int id)
         {
-            return movieRatings.Single(m => m.Id == id);
+            return movieRatings.SingleOrDefault(m => m.Id == id);
         }
 
         public List<MovieRating> GetMovieRatings()
@@ -29,6 +29,7 @@ namespace CoderGirl_MVCMovies.Data
 
         public int Save(MovieRating movieRating)
         {
+            
             movieRating.Id = nextId;
             movieRatings.Add(movieRating);
             nextId++;

@@ -10,7 +10,7 @@
         <th>Movie</th>
         <th>Rating</th>
     </tr>
-    @foreach (MovieRating movieRating in Model)
+    @foreach (var movieRating in Model)
     {
         @if (movieRating.Rating != null)
         {
