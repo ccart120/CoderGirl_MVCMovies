@@ -11,11 +11,12 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRating
 
         public static MovieRatingEditViewModel GetModel(int id)
         {
-            Models.MovieRating movieRating = (Models.MovieRating)RepositoryFactory.GetDirectorRepository().GetById(id);
+            Models.MovieRating movieRating = (Models.MovieRating)RepositoryFactory.GetMovieRatingRepository().GetById(id);
             return new MovieRatingEditViewModel
             {
                 Rating = movieRating.Rating,
                 MovieName = movieRating.MovieName,
+                MovieId = movieRating.MovieId,
 
 
             };
@@ -34,7 +35,7 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRating
                 Rating = this.Rating,
                 MovieId = this.MovieId
             };
-            RepositoryFactory.GetDirectorRepository().Update(movieRating);
+            RepositoryFactory.GetMovieRatingRepository().Update(movieRating);
         }
     }
 }

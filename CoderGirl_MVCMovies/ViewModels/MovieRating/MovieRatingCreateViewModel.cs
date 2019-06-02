@@ -11,20 +11,33 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRating
     {
         public string MovieName { get; set; }
         public int MovieId { get; set; }
-
-        //I need to move this code to the viewmodel, I think
-        //we need to get the movie objects by id and get their names out of there
-        //then, we can assign the movienames and movieids to movierating objects
-        //var movie = (Movie)movieRespository.GetById(movieId);
-        //string movieName = movie.Name;
+        public int Rating { get; set; }
 
 
+
+        public static MovieRatingCreateViewModel GetMovieRatingCreateViewModel(int id)
+        {
+            //List<Director> directors = RepositoryFactory.GetDirectorRepository()
+            //    .GetModels()
+            //    .Cast<Director>()
+            //    .ToList();
+
+            MovieRatingCreateViewModel viewModel = new MovieRatingCreateViewModel();
+            
+            var movie = (Models.Movie)RepositoryFactory.GetMovieRepository().GetById(id)  ;
+            string movieName = movie.Name;
+            viewModel.MovieName = movieName;
+            id = movie.Id;
+            viewModel.MovieId = id;
+            return viewModel;
+        }
         public void Persist()
         {
             Models.MovieRating movieRating = new Models.MovieRating
             {
                 MovieName = this.MovieName,
-                MovieId = this.MovieId
+                MovieId = this.MovieId,
+                Rating = this.Rating,
             };
             RepositoryFactory.GetMovieRatingRepository().Save(movieRating);
         }

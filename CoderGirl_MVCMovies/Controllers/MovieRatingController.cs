@@ -16,19 +16,25 @@ namespace CoderGirl_MVCMovies.Controllers
 
        public IActionResult Index()
         {
-            List<MovieRating> movieRatings = ratingRepository.GetModels().Cast<MovieRating>().ToList();
-            return View(movieRatings);
+            var movieRating = MovieRatingListViewModel.GetMovieRatingList();
+            return View(movieRating);
         }
 
         [HttpGet]
-        public IActionResult Create(int movieId)
+        public IActionResult Create(int id)
         {
-            var movie = (Movie)movieRespository.GetById(movieId);
-            string movieName = movie.Name;
-            MovieRating movieRating = new MovieRating();
-            movieRating.MovieId = movieId;
-            movieRating.MovieName = movieName;
-            return View(movieRating);
+            //I need to move this code to the viewmodel, I think
+            //we need to get the movie objects by id and get their names out of there
+            //then, we can assign the movienames and movieids to movierating objects
+            //var movie = (Movie)movieRespository.GetById(movieId);
+            //string movieName = movie.Name;
+            
+
+            //MovieRating movieRating = new MovieRating();
+            //movieRating.MovieId = movieId;
+            //movieRating.MovieName = movieName;
+            MovieRatingCreateViewModel model = MovieRatingCreateViewModel.GetMovieRatingCreateViewModel(id);
+            return View(model);
         }
 
         [HttpPost]
@@ -40,22 +46,21 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            MovieRating movieRating = (MovieRating)ratingRepository.GetById(id);
-            return View(movieRating);
+            MovieRatingEditViewModel model = MovieRatingEditViewModel.GetModel(id);
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, MovieRating movieRating)
+        public IActionResult Edit(int id, MovieRatingEditViewModel model)
         {
-            movieRating.Id = id;
-            ratingRepository.Update(movieRating);
+            model.Persist(id);
             return RedirectToAction(actionName: nameof(Index));
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            ratingRepository.Delete(id);
+            RepositoryFactory.GetMovieRatingRepository().Delete(id);
             return RedirectToAction(actionName: nameof(Index));
         }
     }
