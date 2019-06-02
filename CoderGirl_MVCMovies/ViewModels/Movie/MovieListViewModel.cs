@@ -24,7 +24,8 @@ namespace CoderGirl_MVCMovies.ViewModels.Movie
                 Id = movie.Id,
                 Name = movie.Name,
                 DirectorName = movie.DirectorName,
-                Year = movie.Year
+                Year = movie.Year,
+                Ratings = movie.Ratings,
             };
         }
 
@@ -33,6 +34,6 @@ namespace CoderGirl_MVCMovies.ViewModels.Movie
         public string DirectorName { get; set; }
         public int Year { get; set; }
         public List<int> Ratings { get; set; }
-        public int DirectorId { get; set; }
+        
     }
 }
