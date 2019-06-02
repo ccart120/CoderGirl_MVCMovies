@@ -27,6 +27,8 @@ namespace CoderGirl_MVCMovies.ViewModels.Movie
                 Year = movie.Year,
                 Ratings = movie.Ratings,
             };
+
+     
         }
 
         public int Id { set; get; }

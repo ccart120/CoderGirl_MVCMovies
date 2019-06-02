@@ -4,19 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Directors</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a id="add-new-director" asp-action="Create">Add a Director</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
+            <th>Name
+                @*@Html.DisplayNameFor(model => model.FullName)*@
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
+            <th>Birth Date
+                @*@Html.DisplayNameFor(model => model.BirthDate)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nationality)

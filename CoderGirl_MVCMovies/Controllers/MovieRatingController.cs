@@ -21,7 +21,7 @@ namespace CoderGirl_MVCMovies.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create(int id)
+        public IActionResult Create(int movieId)
         {
             //I need to move this code to the viewmodel, I think
             //we need to get the movie objects by id and get their names out of there
@@ -33,13 +33,14 @@ namespace CoderGirl_MVCMovies.Controllers
             //MovieRating movieRating = new MovieRating();
             //movieRating.MovieId = movieId;
             //movieRating.MovieName = movieName;
-            MovieRatingCreateViewModel model = MovieRatingCreateViewModel.GetMovieRatingCreateViewModel(id);
+            MovieRatingCreateViewModel model = MovieRatingCreateViewModel.GetMovieRatingCreateViewModel(movieId);
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Create(MovieRatingCreateViewModel model)
         {
+            model.Persist();
             return RedirectToAction(controllerName: nameof(Movie), actionName: nameof(Index));
         }
 

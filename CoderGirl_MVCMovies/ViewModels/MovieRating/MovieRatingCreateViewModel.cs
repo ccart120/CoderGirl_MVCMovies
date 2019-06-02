@@ -15,7 +15,7 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRating
 
 
 
-        public static MovieRatingCreateViewModel GetMovieRatingCreateViewModel(int id)
+        public static MovieRatingCreateViewModel GetMovieRatingCreateViewModel(int movieId)
         {
             //List<Director> directors = RepositoryFactory.GetDirectorRepository()
             //    .GetModels()
@@ -24,11 +24,10 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRating
 
             MovieRatingCreateViewModel viewModel = new MovieRatingCreateViewModel();
             
-            var movie = (Models.Movie)RepositoryFactory.GetMovieRepository().GetById(id)  ;
+            var movie = (Models.Movie)RepositoryFactory.GetMovieRepository().GetById(movieId)  ;
             string movieName = movie.Name;
             viewModel.MovieName = movieName;
-            id = movie.Id;
-            viewModel.MovieId = id;
+            viewModel.MovieId = movieId;
             return viewModel;
         }
         public void Persist()

@@ -11,18 +11,19 @@ namespace CoderGirl_MVCMovies.ViewModels.Movie
     {
         public static MovieCreateViewModel GetMovieCreateViewModel()
         {
-            MovieCreateViewModel viewModel = new MovieCreateViewModel();
+            MovieCreateViewModel model = new MovieCreateViewModel();
             List<Director> directors = RepositoryFactory.GetDirectorRepository()
                 .GetModels()
                 .Cast<Director>()
                 .ToList();
-            viewModel.Directors = directors;
-            return viewModel;
+            model.Directors = directors;
+            return model;
         }
 
         public string Name { get; set; }
         public int DirectorId { get; set; }
         public List<Director> Directors { get; set; }
+        public string DirectorName { get; set; }
         public int Year { get; set; }
 
         public void Persist()
@@ -31,6 +32,7 @@ namespace CoderGirl_MVCMovies.ViewModels.Movie
             {
                 Name = this.Name,
                 DirectorId = this.DirectorId,
+                DirectorName = this.DirectorName,
                 Year = this.Year
             };
             RepositoryFactory.GetMovieRepository().Save(movie);
