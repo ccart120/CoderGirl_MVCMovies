@@ -27,7 +27,7 @@ namespace CoderGirl_MVCMovies.Controllers
             MovieCreateViewModel model = MovieCreateViewModel.GetMovieCreateViewModel();
             return View(model);
         }
-
+        //[Route("/movie")]
         [HttpPost]
         public IActionResult Create(MovieCreateViewModel model)
         {
@@ -47,6 +47,7 @@ namespace CoderGirl_MVCMovies.Controllers
             }
 
             model.Persist();
+            
             return RedirectToAction(actionName: nameof(Index));
         }
 
