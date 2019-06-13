@@ -55,7 +55,7 @@ namespace CoderGirl_MVCMovies.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Delete(int id)
         {
             movieRatingRepository.Delete(id);
 

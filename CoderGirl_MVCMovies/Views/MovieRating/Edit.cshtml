@@ -6,8 +6,8 @@
 
 <h1>Edit</h1>
 
-<h4>MovieRating</h4>
-<hr />
+<h4>Movie Rating</h4>
+@*<hr />*@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -16,13 +16,14 @@
             <div class="form-group">
                 <input readonly asp-for="Id" class="form-control" hidden="hidden" />
                 <label asp-for="MovieName" class="control-label">Movie Name</label>
-                <input readonly asp-for="MovieName" class="form-control" hidden="hidden" />
-                <label>@Model.MovieName</label>
+                <input readonly asp-for="MovieName" class="form-control" />
+                @*<label>@Model.MovieName</label>*@
 
                 <span asp-validation-for="MovieName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
+                <input readonly asp-for="Id" class="form-control" hidden="hidden" />
+                <label asp-for="Rating" class="control-label">Rating</label>
                 <label>@Model.Rating</label>
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
